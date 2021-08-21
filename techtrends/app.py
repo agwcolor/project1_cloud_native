@@ -7,28 +7,13 @@ import sys
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 
 from werkzeug.exceptions import abort
-path = os.getcwd()
+# path = os.getcwd()
 
 total_connections = 0
-'''
-log_format = "INFO:%(name)s:127.0.0.1 - - [08/Jan/2021 22:40:06] "GET /metrics HTTP/1.1" 200 -
-# logger = logging.getLogger(__name__)
-# formatter = logging.Formatter(log_format)
-log_format = '%(levelname)s: %(name)s %(asctime)s  %(threadName)s : %(message)s'
-file_handler = logging.FileHandler(filename=path + '/app.log',
-                                   filemode='w')
-stdout_handler = logging.StreamHandler(sys.stdout),
-handlers = [file_handler, stdout_handler]
 
-logging.basicConfig(level=logging.DEBUG,
-                    format=log_format,
-                    datefmt="%F %A %T",
-                    handlers = handlers,
-                    force=True)
-'''
 # Project 1 : Healthcheck and Metric endpoints
+logger = logging.getLogger(__name__)
 logging.config.fileConfig('logging.cfg')
-logger = logging.getLogger('techTrends')
 
 
 # Function to get a database connection.
@@ -57,7 +42,7 @@ def count_db_connection():
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your secret key'
 
-# Define the main route of the web application 
+# Define the main route of the web application
 @app.route('/')
 def index():
     connection = get_db_connection()
@@ -66,6 +51,7 @@ def index():
     count_db_connection()
     return render_template('index.html', posts=posts)
 
+# Return health check
 @app.route('/healthz')
 def healthcheck():
     # log line
@@ -74,12 +60,12 @@ def healthcheck():
             200,
             {'Content-Type': 'application/json'})
 
+# Route for metrics
 @app.route('/metrics')
 def metrics():
     # log line
     connection = get_db_connection()
     posts = len(connection.execute('SELECT * FROM posts').fetchall())
-    connections = connection.execute('')
     app.logger.info("Metrics request successfull")
     return (jsonify({
         "result": "OK - Healthy",
@@ -95,17 +81,17 @@ def metrics():
 def post(post_id):
     post = get_post(post_id)
     if post is None:
-        logging.error('Error (404): %s page not found')
+        app.logger.error('Error (404): Page not found')
         return render_template('404.html'), 404
     else:
-        logging.info('Article: %s', post['title'])
+        app.logger.info('Article, "%s" retrieved!', post['title'])
         count_db_connection()
         return render_template('post.html', post=post)
 
 # Define the About Us page
 @app.route('/about')
 def about():
-    logging.info('Page: About Us')
+    app.logger.info('Page, "About Us", retrieved!')
     return render_template('about.html')
 
 # Define the post creation functionality 
@@ -122,7 +108,7 @@ def create():
             connection.execute('INSERT INTO posts (title, content) VALUES (?, ?)',(title, content))
             connection.commit()
             connection.close()
-            logging.info('New post: %s', title)
+            app.logger.info('New post: %s', title)
             count_db_connection()
 
             return redirect(url_for('index'))
