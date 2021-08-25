@@ -1,11 +1,49 @@
 ## Docker commands used to build the application 
 # TODO: insert the docker build command
+docker build -f Dockerfile -t techtrends .
 
 ## Docker commands used to run the application
 # TODO: insert the docker run command
+docker run -d -p 7111:3111 techtrends
 
 ## Docker commands used to get the application logs
 # TODO: insert the docker logs command
+docker logs 2ed963d17939
 
 ## Logs from the container running the TechTrends application
 # TODO: paste logs from the Docker container 
+ Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+INFO: werkzeug 24/08/2021 09:11,  * Running on http://0.0.0.0:3111/ (Press CTRL+C to quit)
+INFO: werkzeug 24/08/2021 09:12, 172.17.0.1 - - [24/Aug/2021 09:12:13] "GET / HTTP/1.1" 200 -
+INFO: werkzeug 24/08/2021 09:12, 172.17.0.1 - - [24/Aug/2021 09:12:13] "GET /static/css/main.css HTTP/1.1" 200 -
+INFO: werkzeug 24/08/2021 09:12, 172.17.0.1 - - [24/Aug/2021 09:12:13] "GET /favicon.ico HTTP/1.1" 404 -
+INFO: werkzeug 24/08/2021 09:12, 172.17.0.1 - - [24/Aug/2021 09:12:32] "GET / HTTP/1.1" 200 -
+INFO: werkzeug 24/08/2021 09:12, 172.17.0.1 - - [24/Aug/2021 09:12:32] "GET /static/css/main.css HTTP/1.1" 200 -
+INFO: werkzeug 24/08/2021 09:12, 172.17.0.1 - - [24/Aug/2021 09:12:32] "GET /favicon.ico HTTP/1.1" 404 -
+INFO: werkzeug 24/08/2021 09:12, 172.17.0.1 - - [24/Aug/2021 09:12:36] "GET / HTTP/1.1" 200 -
+[2021-08-24 09:14:16,535] INFO in app: Page, "About Us", retrieved!
+INFO: app 24/08/2021 09:14, Page, "About Us", retrieved!
+INFO: werkzeug 24/08/2021 09:14, 172.17.0.1 - - [24/Aug/2021 09:14:16] "GET /about HTTP/1.1" 200 -
+INFO: werkzeug 24/08/2021 09:14, 172.17.0.1 - - [24/Aug/2021 09:14:17] "GET / HTTP/1.1" 200 -
+INFO: app 24/08/2021 09:14, Article, "KubeCon + CloudNativeCon 2021" retrieved!
+[2021-08-24 09:14:20,098] INFO in app: Article, "KubeCon + CloudNativeCon 2021" retrieved!
+INFO: werkzeug 24/08/2021 09:14, 172.17.0.1 - - [24/Aug/2021 09:14:20] "GET /2 HTTP/1.1" 200 -
+INFO: werkzeug 24/08/2021 09:14, 172.17.0.1 - - [24/Aug/2021 09:14:22] "GET /create HTTP/1.1" 200 -
+[2021-08-24 09:14:33,553] INFO in app: New post: Pleasant surprise
+INFO: app 24/08/2021 09:14, New post: Pleasant surprise
+INFO: werkzeug 24/08/2021 09:14, 172.17.0.1 - - [24/Aug/2021 09:14:33] "POST /create HTTP/1.1" 302 -
+INFO: werkzeug 24/08/2021 09:14, 172.17.0.1 - - [24/Aug/2021 09:14:33] "GET / HTTP/1.1" 200 -
+INFO: app 24/08/2021 09:14, Article, "KubeCon + CloudNativeCon 2021" retrieved!
+[2021-08-24 09:14:37,253] INFO in app: Article, "KubeCon + CloudNativeCon 2021" retrieved!
+INFO: werkzeug 24/08/2021 09:14, 172.17.0.1 - - [24/Aug/2021 09:14:37] "GET /2 HTTP/1.1" 200 -
+INFO: app 24/08/2021 09:16, Metrics request successfull
+[2021-08-24 09:16:31,078] INFO in app: Metrics request successfull
+INFO: werkzeug 24/08/2021 09:16, 172.17.0.1 - - [24/Aug/2021 09:16:31] "GET /metrics HTTP/1.1" 201 -
+[2021-08-24 09:16:42,421] INFO in app: Status request successful
+INFO: app 24/08/2021 09:16, Status request successful
+INFO: werkzeug 24/08/2021 09:16, 172.17.0.1 - - [24/Aug/2021 09:16:42] "GET /healthz HTTP/1.1" 200 -
+INFO: werkzeug 24/08/2021 09:17, 172.17.0.1 - - [24/Aug/2021 09:17:23] "GET / HTTP/1.1" 200 -
