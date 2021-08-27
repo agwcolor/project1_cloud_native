@@ -1,0 +1,27 @@
+namespace:
+  name: sandbox
+
+image:
+  repository: agwcolor/techtrends 
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  port: 4111
+  targetPort: 3111
+  protocol: TCP
+  type: ClusterIP
+
+replicaCount: 1
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 128Mi
+
+containerPort: 3111
+livenessProbe: /healthz
+readinessProbe: /healthz
