@@ -40,4 +40,3 @@ spec:
             memory: {{ .Values.resources.limits.memory }}
             cpu: {{ .Values.resources.limits.cpu }}
 status: {}
-# {{ toYaml .Values.resources | indent 12 }}
