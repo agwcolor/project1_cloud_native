@@ -3,7 +3,6 @@ description: Install a Techtrends deployment
 keywords: 
   - techtrends
 maintainers:
-  -
-    name: agwcolor
+  - name: agwcolor
 name: techtrends
 version: 1.0.0
