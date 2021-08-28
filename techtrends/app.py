@@ -12,9 +12,11 @@ from werkzeug.exceptions import abort
 total_connections = 0
 
 # Project 1 : Healthcheck and Metric endpoints
-logger = logging.getLogger(__name__)
+# Please see logging.cfg for logging configuration - sys.stdout, sys.stderr
+# are both configured there, as well as file handlers for stdout.log and 
+# stderr.log
 logging.config.fileConfig('logging.cfg')
-
+logger = logging.getLogger(__name__)
 
 # Function to get a database connection.
 # This function connects to database with the name `database.db`
