@@ -3,18 +3,24 @@ image:
   pullPolicy: IfNotPresent
   repository: agwcolor/techtrends
   tag: latest
-livenessProbe: /healthz
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: 3111
 namespace:
   name: sandbox
-readinessProbe: /healthz
+readinessProbe:
+  httpGet:
+    path: /healthz
+    port: 3111
 replicaCount: 1
 resources:
   limits:
     cpu: 500m
     memory: 128Mi
   requests:
-    cpu: 50m
-    memory: 256Mi
+    cpu: 250m
+    memory: 64Mi
 service:
   port: 4111
   protocol: TCP
